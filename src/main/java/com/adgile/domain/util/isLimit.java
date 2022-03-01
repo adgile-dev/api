@@ -19,7 +19,7 @@ public class isLimit {
 
     private boolean isLimitByDailyCap;
 
-    public isLimit(boolean isLimitOfTotal, boolean isLimitOfDaily, boolean isLimitByTotalDailyCap, boolean isLimitByDailyCap) {
+    public isLimit(Boolean isLimitOfTotal, Boolean isLimitOfDaily, Boolean isLimitByTotalDailyCap, Boolean isLimitByDailyCap) {
         this.isLimitOfTotal = isLimitOfTotal;
         this.isLimitOfDaily = isLimitOfDaily;
         this.isLimitByTotalDailyCap = isLimitByTotalDailyCap;
