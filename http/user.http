@@ -16,12 +16,13 @@ Content-Type: application/json
 
 {
   "type":  0,
+  "isDomestic": 1,
   "userType": 1,
-  "userId" : "d1122oyeo111n1",
-  "name" : "도연11111",
-  "manager" :  "대리",
+  "userId" : "doyeon",
+  "name" : "도연컴퍼니",
+  "manager" :  "김도연",
   "email" : "doyeon@shallwead.com",
-  "invoiceEmail" :  "doyeon@shallwead.com",
+  "invoiceEmail" : "doyeon@shallwead.com",
   "currencyType": 1
 }
 

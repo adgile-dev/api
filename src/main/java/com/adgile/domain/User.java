@@ -16,8 +16,11 @@ public class User extends BaseTimeEntity {
     @Id
     private Long id;
 
+    // 국내 해외 구분
     private boolean isDomestic;
 
+    // 광고주
+    // 매체사
     private UserTypeEnum type;
 
     // unique 한 값
