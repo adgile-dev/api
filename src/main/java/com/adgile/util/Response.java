@@ -14,10 +14,6 @@ public class Response<T> {
 
     public static final Response<String> OK = new Response<>(200, "OK", null);
 
-//    public static <T> Response<T> test() {
-//        return new Response<>(200, null, )
-//    }
-
     public static <T> Response<T> success(T data) {
         return new Response<>(200, null, data);
     }
