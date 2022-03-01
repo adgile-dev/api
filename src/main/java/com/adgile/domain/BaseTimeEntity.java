@@ -15,15 +15,15 @@ import java.time.LocalDateTime;
 public class BaseTimeEntity {
 
     @CreatedDate
-    private LocalDateTime createDate;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updateDate;
+    private LocalDateTime updatedAt;
 
-    private LocalDateTime deleteDate;
+    private LocalDateTime deletedAt;
 
     public void updateDelete() {
-        this.deleteDate = LocalDateTime.now();
+        this.deletedAt = LocalDateTime.now();
     }
 
 }

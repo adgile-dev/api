@@ -16,7 +16,7 @@ public class User extends BaseTimeEntity {
     @Id
     private Long id;
 
-    private boolean isDomestic;
+    private Boolean isDomestic;
 
     private UserTypeEnum type;
 
