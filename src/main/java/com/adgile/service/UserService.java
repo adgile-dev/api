@@ -33,18 +33,26 @@ public class UserService {
     }
 
     public List<UserInfoResponse> getUsers() {
-
         UserConditional where = UserConditional.builder()
                 .build();
 
         List<User> users = userRepository.getUsers(where);
 
-        List<UserInfoResponse> userInfoResponses = UserMapper.INSTANCE.usersToInfo(users);
+        return UserMapper.INSTANCE.usersToInfo(users);
+    }
 
-        System.out.println("--------- userInfoResponse");
-        System.out.println(userInfoResponses);
+    public Boolean isDuplicate(String userId) {
 
-        return userInfoResponses;
+        UserConditional where = UserConditional.builder()
+                .userId(userId)
+                .build();
+
+        userRepository.getUser(where)
+                        .ifPresent(user -> {
+                            throw new BusinessException(ErrorCode.USER_EXIST);
+                        });
+
+        return true;
     }
 
     @Transactional

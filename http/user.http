@@ -7,7 +7,7 @@ GET http://{{local}}/v1/user
 Content-Type: application/json
 
 ### id check
-GET {{local}}/v1/user/check/doyeon121
+GET {{local}}/v1/user/check/doyeon1123
 Content-Type: application/json
 
 ### 생성

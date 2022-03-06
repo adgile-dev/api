@@ -18,14 +18,21 @@ public class UserController {
 
     private final UserService userService;
 
+    @GetMapping("")
+    public ApiResponse<List<UserInfoResponse>> getUsers() {
+        return ApiResponse.success(userService.getUsers());
+    }
+
     @GetMapping("{id}")
     public ApiResponse<UserInfoResponse> getUser(@PathVariable Long id) {
         return ApiResponse.success(userService.getUser(id));
     }
 
-    @GetMapping("")
-    public ApiResponse<List<UserInfoResponse>> getUsers() {
-        return ApiResponse.success(userService.getUsers());
+    @GetMapping("check/{userId}")
+    public ApiResponse<Boolean> isDuplicated(@PathVariable String userId) {
+        userService.isDuplicate(userId);
+
+        return ApiResponse.success(true);
     }
 
     @PostMapping(value = "", produces = "application/json; charset=utf8")
