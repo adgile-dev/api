@@ -12,10 +12,10 @@ public class ApiResponse<T> {
     private String result;
     private String message;
 
-    public static final ApiResponse<String> OK = new ApiResponse<>("", "00000", "OK");
+    public static final ApiResponse<String> OK = new ApiResponse<>("", "200", "OK");
 
     public static <T> ApiResponse<T> success(T data) {
-        return new ApiResponse<>(data, "00000", "OK");
+        return new ApiResponse<>(data, "200", "OK");
     }
 
     public static ApiResponse<Object> error(String result, String message) {
