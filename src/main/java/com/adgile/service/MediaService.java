@@ -2,6 +2,7 @@ package com.adgile.service;
 
 import com.adgile.domain.Media;
 import com.adgile.domain.QMedia;
+import com.adgile.domain.User;
 import com.adgile.domain.conditional.MediaConditional;
 import com.adgile.domain.conditional.UserConditional;
 import com.adgile.dto.request.MediaCreateRequest;
@@ -17,6 +18,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,38 +30,45 @@ public class MediaService {
     private final UserRepository userRepository;
     private final MediaRepository mediaRepository;
 
-    public void getMedia(Long id) {
+//    public MediaInfoResponse getMedia(Long id) {
+//
+//        MediaConditional where = MediaConditional.builder()
+//                .id(id)
+//                .build();
+//
+//        Tuple tuple = mediaRepository.findMediaOfUser(where)
+//                .orElseThrow(() -> new BusinessException(ErrorCode.MEDIA_NOT_EXIST));
+//
+//        System.out.println("----------- tuple:: ");
+//        System.out.println(tuple);
+//
+//
+//        return null;
+//    }
+
+    public MediaInfoResponse getMedia(Long id) {
 
         MediaConditional where = MediaConditional.builder()
                 .id(id)
                 .build();
 
-        mediaRepository.findMedia(where)
+        Tuple tuple = mediaRepository.findMediaOfUser(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.MEDIA_NOT_EXIST));
 
-        Tuple media = mediaRepository.findMediaOfUser(where)
-                .orElseThrow(() -> new BusinessException(ErrorCode.MEDIA_NOT_EXIST));
-
-        System.out.println("--------- media");
-        System.out.println(media);
+        return MediaMapper.INSTANCE.mediaToInfo(tuple);
+    }
 
 
-        MediaInfoResponse mediaInfoResponse = MediaMapper.INSTANCE.mediaToInfo(media);
+    public List<MediaInfoResponse> getMedium() {
 
-        System.out.println(mediaInfoResponse);
+        MediaConditional where = MediaConditional.
+                builder()
+                .build();
 
-//        System.out.println("----- media Info Response");
-//        System.out.println(mediaInfoResponse);
-//        System.out.println("-----// media Info Response");
+        List<Tuple> mediumOfUser = mediaRepository.findMediumOfUser(where);
 
-//        Media media = mediaRepository.findMedia(where)
-//                .orElseThrow(() -> new BusinessException(ErrorCode.MEDIA_NOT_EXIST));
-//        System.out.println("------ media");
-//        System.out.println(media);
-//        System.out.println("------ // media");
-
-
-
+        List<MediaInfoResponse> mediaInfoResponses = MediaMapper.INSTANCE.mediumToInfo(mediumOfUser);
+        return mediaInfoResponses;
     }
 
     public void doRegister(MediaCreateRequest request) {

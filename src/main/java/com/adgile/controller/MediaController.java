@@ -2,10 +2,13 @@ package com.adgile.controller;
 
 import com.adgile.dto.request.MediaCreateRequest;
 import com.adgile.dto.request.MediaUpdateRequest;
+import com.adgile.dto.response.MediaInfoResponse;
 import com.adgile.service.MediaService;
 import com.adgile.util.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,15 +18,15 @@ public class MediaController {
     private final MediaService mediaService;
 
     @GetMapping("")
-    public ApiResponse<String> getMedium() {
-        return ApiResponse.OK;
+    public ApiResponse<List<MediaInfoResponse>> getMedium() {
+
+        return ApiResponse.success(mediaService.getMedium());
     }
 
 
     @GetMapping("{id}")
-    public ApiResponse<String> getMedia(@PathVariable Long id) {
-        mediaService.getMedia(id);
-        return ApiResponse.OK;
+    public ApiResponse<MediaInfoResponse> getMedia(@PathVariable Long id) {
+        return ApiResponse.success(mediaService.getMedia(id));
     }
 
     @PostMapping("")

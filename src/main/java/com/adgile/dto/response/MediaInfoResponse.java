@@ -10,11 +10,13 @@ import lombok.NoArgsConstructor;
 public class MediaInfoResponse {
 
     private Long id;
-    private String userId;
+    private Long userId;
 
     private MediaStatusEnum status;
 
+    // 매체명
     private String name;
+    private String code;
     private String manager;
 
     private String email;
@@ -28,7 +30,6 @@ public class MediaInfoResponse {
 
     // 법인명
     private String userName;
-    /// 매체코드
-    private String userCode;
+
 
 }

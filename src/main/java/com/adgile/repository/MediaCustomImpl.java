@@ -4,10 +4,12 @@ import com.adgile.domain.Media;
 import com.adgile.domain.conditional.MediaConditional;
 import com.adgile.dto.response.MediaInfoResponse;
 import com.querydsl.core.Tuple;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.adgile.domain.QUser.user;
@@ -39,10 +41,73 @@ public class MediaCustomImpl implements MediaCustom {
 
     }
 
+    // TODO: tuple -> response 바꾸는거 확인 후 찾아보기
+//    @Override
+//    public Optional<Tuple> findMediaOfUser(MediaConditional where) {
+//        Optional<Tuple> tuple = Optional.ofNullable(
+//                queryFactory.select(
+//                                media, user
+//                        )
+//                        .from(media)
+//                        .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+//                        .where(
+//                                eqId(where.getId()),
+//                                eqUserId(where.getUserId()),
+//                                eqName(where.getName()),
+//                                eqManager(where.getManager()),
+//                                eqEmail(where.getEmail()),
+//                                eqClickUrl(where.getClickUrl()),
+//                                eqInstallPostback(where.getInstallPostback()),
+//                                eqEventPostback(where.getEventPostback()),
+//                                media.deletedAt.isNull()
+//                        )
+//                        .fetchOne()
+//        );
+//
+//        return tuple;
+//
+//    }
+
     @Override
     public Optional<Tuple> findMediaOfUser(MediaConditional where) {
-        Optional<Tuple> t = Optional.ofNullable(
-                queryFactory.select(media, user)
+        /*return Optional.ofNullable(
+                queryFactory.select(
+                                Projections.fields(
+                                        MediaInfoResponse.class,
+                                        media.id,
+                                        media.userId,
+//                                        media.status,
+                                        media.name,
+                                        media.manager,
+                                        media.email,
+                                        media.clickUrl,
+                                        media.installPostback,
+                                        media.eventPostback,
+                                        user.isDomestic,
+                                        user.name.as("userName"),
+                                        user.id.as("userCode")
+                                )
+                        )
+                        .from(media)
+                        .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+                        .where(
+                                eqId(where.getId()),
+                                eqUserId(where.getUserId()),
+                                eqName(where.getName()),
+                                eqManager(where.getManager()),
+                                eqEmail(where.getEmail()),
+                                eqClickUrl(where.getClickUrl()),
+                                eqInstallPostback(where.getInstallPostback()),
+                                eqEventPostback(where.getEventPostback()),
+                                media.deletedAt.isNull()
+                        )
+                        .fetchOne()
+        );*/
+
+        Optional<Tuple> tuple = Optional.ofNullable(
+                queryFactory.select(
+                                media, user
+                        )
                         .from(media)
                         .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
                         .where(
@@ -58,8 +123,71 @@ public class MediaCustomImpl implements MediaCustom {
                         )
                         .fetchOne()
         );
-        return t;
+
+        return tuple;
     }
+
+    @Override
+    public List<Tuple> findMediumOfUser(MediaConditional where) {
+        List<Tuple> fetch = queryFactory.select(
+                        media, user
+                )
+                .from(media)
+                .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+                .where(
+                        eqId(where.getId()),
+                        eqUserId(where.getUserId()),
+                        eqName(where.getName()),
+                        eqManager(where.getManager()),
+                        eqEmail(where.getEmail()),
+                        eqClickUrl(where.getClickUrl()),
+                        eqInstallPostback(where.getInstallPostback()),
+                        eqEventPostback(where.getEventPostback()),
+                        media.deletedAt.isNull()
+                )
+                .fetch();
+
+        return fetch;
+    }
+//
+//    @Override
+//    public List<MediaInfoResponse> findMediumOfUser(MediaConditional where) {
+//        List<MediaInfoResponse> fetch = queryFactory.select(
+//                        Projections.fields(
+//                                MediaInfoResponse.class,
+//                                media.id,
+//                                media.userId,
+////                                        media.status,
+//                                media.name,
+//                                media.manager,
+//                                media.email,
+//                                media.clickUrl,
+//                                media.installPostback,
+//                                media.eventPostback,
+//                                user.isDomestic,
+//                                user.name.as("userName"),
+//                                user.id.as("userCode")
+//                        )
+//                )
+//                .from(media)
+//                .leftJoin(user).on(user.id.eq(media.userId), user.deletedAt.isNull())
+//                .where(
+//                        eqId(where.getId()),
+//                        eqUserId(where.getUserId()),
+//                        eqName(where.getName()),
+//                        eqManager(where.getManager()),
+//                        eqEmail(where.getEmail()),
+//                        eqClickUrl(where.getClickUrl()),
+//                        eqInstallPostback(where.getInstallPostback()),
+//                        eqEventPostback(where.getEventPostback()),
+//                        media.deletedAt.isNull()
+//                )
+//                .fetch();
+//
+//        System.out.println("---------fetch");
+//        System.out.println(fetch);
+//        return fetch;
+//    }
 
     private BooleanExpression eqId(Long id) {
         return id != null ? media.id.eq(id) : null;

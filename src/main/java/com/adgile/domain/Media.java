@@ -25,6 +25,8 @@ public class Media extends BaseTimeEntity {
     // 상태
     private MediaStatusEnum status;
 
+    private String code;
+
     // 매체명
     private String name;
 
@@ -44,10 +46,11 @@ public class Media extends BaseTimeEntity {
     private String eventPostback;
 
     @Builder
-    public Media(Long id, Long userId, MediaStatusEnum status, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
+    public Media(Long id, Long userId, MediaStatusEnum status, String code, String name, String manager, String email, String clickUrl, String installPostback, String eventPostback) {
         this.id = id;
         this.userId = userId;
         this.status = status;
+        this.code = code;
         this.name = name;
         this.manager = manager;
         this.email = email;
