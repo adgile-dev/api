@@ -1,6 +1,7 @@
 buildscript {
 	ext {
 		queryDslVersion = "5.0.0"
+		mapstructVersion = "1.5.0.Beta2"
 	}
 }
 
@@ -48,10 +49,23 @@ dependencies {
 	// querydsl 추가
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+
+	// map struct
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+	testImplementation "org.testng:testng:6.10", "org.easytesting:fest-assert:1.4"
+	annotationProcessor "org.mapstruct:mapstruct-processor:1.5.0.Beta2"
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// map struct
+tasks.withType(JavaCompile) {
+	options.compilerArgs = [
+			'-Amapstruct.suppressGeneratorTimestamp=true'
+	]
 }
 
 

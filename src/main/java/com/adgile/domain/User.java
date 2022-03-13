@@ -2,10 +2,12 @@ package com.adgile.domain;
 
 import com.adgile.domain.enums.CurrencyEnum;
 import com.adgile.domain.enums.UserTypeEnum;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.adgile.dto.request.UserUpdateRequest;
+import lombok.*;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Getter
@@ -14,6 +16,7 @@ import javax.persistence.Id;
 public class User extends BaseTimeEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Boolean isDomestic;
@@ -38,4 +41,28 @@ public class User extends BaseTimeEntity {
 
     // 수신계산서 수신메일
     private String invoiceEmail;
+
+    @Builder
+    public User(Long id, Boolean isDomestic, UserTypeEnum type, String userId, String name, String manager, String email, CurrencyEnum currencyType, String invoiceEmail) {
+        this.id = id;
+        this.isDomestic = isDomestic;
+        this.type = type;
+        this.userId = userId;
+        this.name = name;
+        this.manager = manager;
+        this.email = email;
+        this.currencyType = currencyType;
+        this.invoiceEmail = invoiceEmail;
+    }
+
+    public void update(UserUpdateRequest request) {
+        this.isDomestic = request.getIsDomestic();
+        this.type = request.getType();
+        this.userId = request.getUserId();
+        this.name = request.getName();
+        this.manager = request.getManager();
+        this.email = request.getEmail();
+        this.currencyType = request.getCurrencyType();
+        this.invoiceEmail = request.getInvoiceEmail();
+    }
 }

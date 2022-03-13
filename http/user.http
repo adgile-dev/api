@@ -1,5 +1,5 @@
 ### 조회
-GET http://{{local}}/v1/user/3
+GET {{local}}/v1/user/1
 Content-Type: application/json
 
 ### 리스트
@@ -7,7 +7,7 @@ GET http://{{local}}/v1/user
 Content-Type: application/json
 
 ### id check
-GET {{local}}/v1/user/check/doyeon121
+GET {{local}}/v1/user/check/doyeon1123
 Content-Type: application/json
 
 ### 생성
@@ -15,9 +15,10 @@ POST {{local}}/v1/user
 Content-Type: application/json
 
 {
+  "isDomestic": true,
   "type":  0,
   "userType": 1,
-  "userId" : "d1122oyeo111n1",
+  "userId" : "doyeon1123",
   "name" : "도연11111",
   "manager" :  "대리",
   "email" : "doyeon@shallwead.com",
@@ -26,18 +27,19 @@ Content-Type: application/json
 }
 
 ### 수정
-PUT {{local}}/v1/user/2
+PUT {{local}}/v1/user/1
 Content-Type: application/json
 
 {
+  "isDomestic": false,
   "type": 1,
-  "user_type": 1,
-  "user_id" : "doyeon12",
+  "userType": 1,
+  "userId" : "doyeon12",
   "name" : "도연",
   "manager" : "대리",
   "email" : "doyeon@shallwead.com",
-  "invoice_email" :  "doyeon@shallwead.com",
-  "currency_type": 1
+  "invoiceEmail" :  "doyeon@shallwead.com",
+  "currencyType": 1
 }
 
 ### 삭제
