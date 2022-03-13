@@ -2,6 +2,9 @@ package com.adgile.exceptions;
 
 public enum ErrorCode {
 
+
+    MEDIA_NOT_EXIST(403, "존재하지 않는 매체입니다."),
+
     USER_NOT_EXIST(403, "존재하지 않는 회원 입니다."),
     USER_EXIST(403, "존재하는 회원 입니다.");
 
