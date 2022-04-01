@@ -5,10 +5,7 @@ import com.adgile.domain.enums.UserTypeEnum;
 import com.adgile.dto.request.UserUpdateRequest;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Entity
@@ -21,6 +18,7 @@ public class User extends BaseTimeEntity {
 
     private Boolean isDomestic;
 
+    @Enumerated(EnumType.STRING)
     private UserTypeEnum type;
 
     // unique 한 값
@@ -37,6 +35,7 @@ public class User extends BaseTimeEntity {
     private String email;
 
     // NET, GROSS 이거랑 구분할 수있도록 필드명 다시 재정의
+    @Enumerated(EnumType.STRING)
     private CurrencyEnum currencyType;
 
     // 수신계산서 수신메일

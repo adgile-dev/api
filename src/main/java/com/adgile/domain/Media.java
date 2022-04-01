@@ -4,10 +4,7 @@ import com.adgile.domain.enums.MediaStatusEnum;
 import com.adgile.dto.request.MediaUpdateRequest;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @ToString
 @Getter
@@ -23,6 +20,7 @@ public class Media extends BaseTimeEntity {
     private Long userId;
 
     // 상태
+    @Enumerated(EnumType.STRING)
     private MediaStatusEnum status;
 
     private String code;
