@@ -26,7 +26,7 @@ public class UserService {
                 .id(id)
                 .build();
 
-        User user = userRepository.getUser(where)
+        User user = userRepository.findUser(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_EXIST));
 
         return UserMapper.INSTANCE.userToInfo(user);
@@ -36,7 +36,7 @@ public class UserService {
         UserConditional where = UserConditional.builder()
                 .build();
 
-        List<User> users = userRepository.getUsers(where);
+        List<User> users = userRepository.findUsers(where);
 
         return UserMapper.INSTANCE.usersToInfo(users);
     }
@@ -47,7 +47,7 @@ public class UserService {
                 .userId(userId)
                 .build();
 
-        userRepository.getUser(where)
+        userRepository.findUser(where)
                         .ifPresent(user -> {
                             throw new BusinessException(ErrorCode.USER_EXIST);
                         });
@@ -62,7 +62,7 @@ public class UserService {
                 .userId(request.getUserId())
                 .build();
 
-        userRepository.getUser(where)
+        userRepository.findUser(where)
                         .ifPresent(user -> {
                             throw new BusinessException(ErrorCode.USER_EXIST);
                         });
@@ -77,7 +77,7 @@ public class UserService {
                 .id(id)
                 .build();
 
-        User user = userRepository.getUser(where)
+        User user = userRepository.findUser(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_EXIST));
 
         user.update(request);
@@ -89,7 +89,7 @@ public class UserService {
                 .id(id)
                 .build();
 
-        User user = userRepository.getUser(where)
+        User user = userRepository.findUser(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_EXIST));
 
         user.updateDelete();

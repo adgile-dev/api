@@ -1,7 +1,5 @@
 package com.adgile.mapper;
 
-import com.adgile.domain.Media;
-import com.adgile.domain.User;
 import com.adgile.dto.response.MediaInfoResponse;
 import com.querydsl.core.Tuple;
 import org.mapstruct.InjectionStrategy;
@@ -18,16 +16,6 @@ public interface MediaMapper {
 
     MediaMapper INSTANCE = Mappers.getMapper(MediaMapper.class);
 
-/*
-    MediaMapper INSTANCE = Mappers.getMapper(MediaMapper.class);
-
-//    @Mapping(target = "userId", source = "userId")
-//    @Mapping(target = "userId", expression = "java(user.get(\"userId\", String.class))")
-//    @Mapping(source = "user.userId", target = "userId")
-//    MediaInfoResponse mediaToInfo(Media media, User user);
-    */
-
-//    MediaMapper MAPPER = Mappers.getMapper(MediaMapper.class);
     @Mapping(target="id", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getId())")
     @Mapping(target="userId", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getUserId())")
     @Mapping(target="name", expression = "java(tuple.get(0, com.adgile.domain.Media.class).getName())")

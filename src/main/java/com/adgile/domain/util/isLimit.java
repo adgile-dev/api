@@ -1,23 +1,25 @@
 package com.adgile.domain.util;
 
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
+@Data
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class isLimit {
 
-    private boolean isLimitOfTotal;
+    private Boolean isLimitOfTotal;
 
-    private boolean isLimitOfDaily;
+    private Boolean isLimitOfDaily;
 
-    private boolean isLimitByTotalDailyCap;
+    private Boolean isLimitByTotalDailyCap;
 
-    private boolean isLimitByDailyCap;
+    private Boolean isLimitByDailyCap;
 
     public isLimit(Boolean isLimitOfTotal, Boolean isLimitOfDaily, Boolean isLimitByTotalDailyCap, Boolean isLimitByDailyCap) {
         this.isLimitOfTotal = isLimitOfTotal;

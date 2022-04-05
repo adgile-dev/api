@@ -23,7 +23,6 @@ public class MediaController {
         return ApiResponse.success(mediaService.getMedium());
     }
 
-
     @GetMapping("{id}")
     public ApiResponse<MediaInfoResponse> getMedia(@PathVariable Long id) {
         return ApiResponse.success(mediaService.getMedia(id));
