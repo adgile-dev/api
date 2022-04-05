@@ -20,7 +20,7 @@ public class UserCustomImpl implements UserCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Optional<User> getUser(UserConditional where) {
+    public Optional<User> findUser(UserConditional where) {
         return Optional.ofNullable(
                 queryFactory.selectFrom(user)
                         .where(
@@ -40,7 +40,7 @@ public class UserCustomImpl implements UserCustom {
     }
 
     @Override
-    public List<User> getUsers(UserConditional where) {
+    public List<User> findUsers(UserConditional where) {
         return queryFactory.selectFrom(user)
                 .where(
                         eqId(where.getId()),

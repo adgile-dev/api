@@ -2,6 +2,8 @@ package com.adgile.exceptions;
 
 public enum ErrorCode {
 
+    ADVERTISEMENT_NOT_EXIST(403, "존재하지 않는 광고입니다."),
+    BUDGET_NOT_EXIST(403, "존재하지 않는 예산정보 입니다."),
 
     MEDIA_NOT_EXIST(403, "존재하지 않는 매체입니다."),
 

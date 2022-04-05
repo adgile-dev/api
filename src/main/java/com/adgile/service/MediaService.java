@@ -1,8 +1,6 @@
 package com.adgile.service;
 
 import com.adgile.domain.Media;
-import com.adgile.domain.QMedia;
-import com.adgile.domain.User;
 import com.adgile.domain.conditional.MediaConditional;
 import com.adgile.domain.conditional.UserConditional;
 import com.adgile.dto.request.MediaCreateRequest;
@@ -20,31 +18,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-import java.util.List;
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class MediaService {
 
     private final UserRepository userRepository;
     private final MediaRepository mediaRepository;
-
-//    public MediaInfoResponse getMedia(Long id) {
-//
-//        MediaConditional where = MediaConditional.builder()
-//                .id(id)
-//                .build();
-//
-//        Tuple tuple = mediaRepository.findMediaOfUser(where)
-//                .orElseThrow(() -> new BusinessException(ErrorCode.MEDIA_NOT_EXIST));
-//
-//        System.out.println("----------- tuple:: ");
-//        System.out.println(tuple);
-//
-//
-//        return null;
-//    }
 
     public MediaInfoResponse getMedia(Long id) {
 
@@ -78,7 +57,7 @@ public class MediaService {
                 .id(request.getUserId())
                 .build();
 
-        userRepository.getUser(where)
+        userRepository.findUser(where)
                         .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_EXIST));
 
         mediaRepository.save(request.toEntity());
@@ -91,7 +70,7 @@ public class MediaService {
                 .id(request.getUserId())
                 .build();
 
-        userRepository.getUser(where)
+        userRepository.findUser(where)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_EXIST));
 
         MediaConditional mediaWhere = MediaConditional.builder()

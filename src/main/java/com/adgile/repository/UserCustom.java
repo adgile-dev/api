@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserCustom {
 
-    Optional<User> getUser(UserConditional where);
+    Optional<User> findUser(UserConditional where);
 
-    List<User> getUsers(UserConditional where);
+    List<User> findUsers(UserConditional where);
 }

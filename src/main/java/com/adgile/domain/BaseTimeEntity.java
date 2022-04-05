@@ -7,23 +7,34 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 public class BaseTimeEntity {
 
-    @CreatedDate
-    private LocalDateTime createdAt;
+    private ZonedDateTime createdAt;
+    private ZonedDateTime updatedAt;
+    private ZonedDateTime deletedAt;
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = ZonedDateTime.now();
+    }
 
-    private LocalDateTime deletedAt;
+    @PreUpdate
+    public void preUpdate() {
+        this.updatedAt = ZonedDateTime.now();
+    }
 
     public void updateDelete() {
-        this.deletedAt = LocalDateTime.now();
+        this.deletedAt = ZonedDateTime.now();
     }
+
+
 
 }
