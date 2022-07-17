@@ -73,5 +73,7 @@ jobs:
       run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://github-cicd-bucket/$PROJECT_NAME/$GITHUB_SHA.zip
       
       # application-name = code-deploy application name
+      
     - name: Code Deploy
-      run: aws deploy create-deployment --application-name adgile-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name dev --s3-location bucket=isntyet-deploy,,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
+      run: aws deploy create-deployment --application-name adgile-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name sg-09dc5a968d0840847
+          --s3-location bucket=github-cicd-bucket,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
