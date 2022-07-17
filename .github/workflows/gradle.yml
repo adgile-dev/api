@@ -75,5 +75,5 @@ jobs:
       # application-name = code-deploy application name
       
     - name: Code Deploy
-      run: aws deploy create-deployment --application-name adgile-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name sg-09dc5a968d0840847
+      run: aws deploy create-deployment --application-name adgile-app --deployment-config-name CodeDeployDefault.OneAtATime --deployment-group-name github-group
           --s3-location bucket=github-cicd-bucket,bundleType=zip,key=$PROJECT_NAME/$GITHUB_SHA.zip
