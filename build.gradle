@@ -5,10 +5,6 @@ buildscript {
 	}
 }
 
-jar {
-	enabled = false
-}
-
 plugins {
 	id 'org.springframework.boot' version '2.6.1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -89,6 +85,10 @@ querydsl {
 
 sourceSets {
 	main.java.srcDir querydslDir
+}
+
+jar {
+	enabled = false
 }
 
 configurations {
