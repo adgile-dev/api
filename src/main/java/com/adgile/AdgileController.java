@@ -8,6 +8,6 @@ public class AdgileController {
 
     @RequestMapping("/")
     public String init() {
-        return "------------- adgile backend API";
+        return "adgile backend API";
     }
 }
