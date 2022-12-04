@@ -4,8 +4,8 @@ import com.adgile.dto.request.MediaCreateRequest;
 import com.adgile.dto.request.MediaUpdateRequest;
 import com.adgile.dto.response.MediaInfoResponse;
 import com.adgile.service.MediaService;
-import com.adgile.util.ApiResponse;
 
+import com.adgile.util.ApiResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

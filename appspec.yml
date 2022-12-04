@@ -1,0 +1,16 @@
+# appspec.yml 예제
+# version 0.0 적어준다.
+version: 0.0
+# 선택한 ec2가 window server 가 아니라면 linux 를 적어준다.
+os: linux
+
+# source 는 프로젝트 기준, destination 은 instance 기준으로 입력해준다.
+# source 가 destination 안에 복사됨
+files:
+  - source: /
+    destination: /home/ubuntu/adgile
+
+hooks:
+    AfterInstall:
+      - location: /start.sh
+        runas: root
