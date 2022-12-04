@@ -103,6 +103,10 @@ sourceSets {
 	main.java.srcDir querydslDir
 }
 
+jar {
+	enabled = false
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
